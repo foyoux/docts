@@ -9,7 +9,7 @@ def filter_not_str(word: str) -> bool:
 
 
 def filter_upper(word: str) -> bool:
-    return not word.upper()
+    return word.isupper()
 
 
 def filter_eq_symbol(word: str) -> bool:
