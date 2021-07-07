@@ -1,7 +1,7 @@
 from typing import List
 
 import xlwings as xw
-from pygtrans import ApiKeyTranslate, Translate, Null
+from pygtrans import Translate, Null
 
 
 def write_xls(xls_path: str, origins: List[str], trans: List[str] = None, step=60000):
@@ -10,7 +10,7 @@ def write_xls(xls_path: str, origins: List[str], trans: List[str] = None, step=6
     #     raise
 
     if trans is None:
-        client = ApiKeyTranslate(api_key='AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw')
+        client = Translate()
         trans = client.translate(origins)
         if isinstance(trans, Null):
             print(trans.msg)

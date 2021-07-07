@@ -23,6 +23,7 @@ def parse_xls(xls_path: str, sheet_index: int = 0, column: int = 0) -> List[str]
 
     # 过滤重复
     olen = len(origen_words)
+    # words = [i for i in set(origen_words) if i != '' and isinstance(i, str)]
     words = [i for i in set(origen_words) if i != '']
     print(f'过滤重复或空文本 parse_xls: {len(origen_words) - len(words)}')
 
