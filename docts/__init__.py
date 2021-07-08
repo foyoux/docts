@@ -9,7 +9,7 @@ __title__ = 'docts'
 
 __description__ = 'document translate, read & translate & write'
 __url__ = 'https://github.com/foyoux/docts'
-__version__ = '0.0.3'
+__version__ = '0.0.1'
 __author__ = 'foyou'
 __author_email__ = 'yimi.0822@qq.com'
 __license__ = 'GPL-3.0'
