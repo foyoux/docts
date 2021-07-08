@@ -25,13 +25,13 @@ def filter_code(word: str):
 
 def setup_module():
     global wf, path
-    # path = r"D:\Users\foyou\TODO\InstallShield\HelpLib\HelpLib.xlf"
-    # path = r"D:\Users\foyou\TODO\InstallShield\ISdbg\ISdbg.xlf"
-    # path = r"D:\Users\foyou\TODO\InstallShield\ISXHelp\ISXHelp.xlf"
-    # path = r"D:\Users\foyou\TODO\InstallShield\Langref\Langref.xlf"
-    # path = r"D:\Users\foyou\TODO\InstallShield\MSI\msi.xlf"
-    path = r"D:\Users\foyou\TODO\InstallShield\Verification\Verification.xlf"
-    path = r"D:\Users\foyou\TODO\InstallShield\Virtual\Virtual.xlf"
+    # path = r"InstallShield/HelpLib/HelpLib.xlf"
+    # path = r"InstallShield/ISdbg/ISdbg.xlf"
+    # path = r"InstallShield/ISXHelp/ISXHelp.xlf"
+    # path = r"InstallShield/Langref/Langref.xlf"
+    # path = r"InstallShield/MSI/msi.xlf"
+    # path = r"InstallShield/Verification/Verification.xlf"
+    path = r"InstallShield/Virtual/Virtual.xlf"
 
     if path.endswith('.xls'):
         words = parse_xls(path)

@@ -4,6 +4,11 @@ from typing import List
 
 
 def parse_xlf(xlf_path: str) -> List[str]:
+    """
+    解析xlf文件, 获取原文字符串
+    :param xlf_path:
+    :return:
+    """
     if not xlf_path.endswith('.xlf'):
         print(f'不是xlf文件: {xlf_path}')
         raise

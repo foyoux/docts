@@ -5,7 +5,7 @@ import xlwings as xw
 
 def parse_xls(xls_path: str, sheet_index: int = 0, column: int = 0) -> List[str]:
     """
-    专为翻译工作, 过滤重复和空字符串
+    解析xls, 获取字符串
     :param xls_path:
     :param sheet_index:
     :param column:

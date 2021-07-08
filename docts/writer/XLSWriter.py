@@ -5,6 +5,14 @@ from pygtrans import Translate, Null
 
 
 def write_xls(xls_path: str, origins: List[str], trans: List[str] = None, step=60000):
+    """
+    写入原文和翻译到xls工作表
+    :param xls_path:
+    :param origins:
+    :param trans:
+    :param step:
+    :return:
+    """
     # if not xls_path.endswith('.xls'):
     #     print(f'不是xlf文件: {xls_path}')
     #     raise

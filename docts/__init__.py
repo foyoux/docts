@@ -18,6 +18,11 @@ __ide__ = 'PyCharm - https://www.jetbrains.com/pycharm/'
 
 
 def todo(path: str):
+    """
+    快速尝试
+    :param path:
+    :return:
+    """
     if path.endswith('.xls'):
         words = parse_xls(path)
     else:
