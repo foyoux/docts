@@ -6,7 +6,7 @@ SPACE_SPLIT = re.compile('[ \t]+')
 
 def filter_not_str(word: str) -> bool:
     for w in SPACE_SPLIT.split(word):
-        if w.isalpha() and not word.isupper() and UPPER_CHAR.match(w) is None:
+        if w.isalpha() and not word.isupper() and UPPER_CHAR.search(w) is None:
             return False
     return True
 
