@@ -1,4 +1,5 @@
-from typing import Callable, List
+import re
+from typing import Callable, List, Pattern, AnyStr
 
 
 class WordsFilter:
@@ -20,6 +21,51 @@ class WordsFilter:
             words.append(word)
         print(f'过滤文本 {_filter.__name__}: {len(self.words) - len(words)}')
         self.words = words
+        return self
+
+    def add_contain_filter(self, contain: Pattern[AnyStr]):
+        """
+        支持正则表达式
+        :param contain:
+        :return:
+        """
+        words = []
+        for word in self.words:
+            if re.search(contain, word):
+                self.ignores.append(word)
+                continue
+            words.append(word)
+        print(f'过滤文本 add_contain_filter({contain}): {len(self.words) - len(words)}')
+        self.words = words
+        return self
+
+    def add_start_filter(self, start: str, strip: str = None):
+        words = []
+        word: str
+        for word in self.words:
+            if strip:
+                word = word.lstrip(strip)
+            if word.startswith(start):
+                self.ignores.append(word)
+                continue
+            words.append(word)
+        print(f'过滤文本 add_start_filter({start}): {len(self.words) - len(words)}')
+        self.words = words
+        return self
+
+    def add_end_filter(self, end: str, strip: str = None):
+        words = []
+        word: str
+        for word in self.words:
+            if strip:
+                word = word.rstrip(strip)
+            if word.endswith(end):
+                self.ignores.append(word)
+                continue
+            words.append(word)
+        print(f'过滤文本 add_end_filter({end}): {len(self.words) - len(words)}')
+        self.words = words
+        return self
 
     def add_map(self, _map: Callable[[str], str]):
         """
@@ -28,6 +74,7 @@ class WordsFilter:
         :return:
         """
         self.words = [_map(i) for i in self.words]
+        return self
 
     def add_replace(self, old, new):
         """
@@ -38,3 +85,4 @@ class WordsFilter:
         """
         i: str
         self.words = [i.replace(old, new) for i in self.words]
+        return self

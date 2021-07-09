@@ -17,10 +17,56 @@ document translate, read &amp; translate &amp; write
 
 1. 使用 **Sisulizer** 提取 **字符串** 并导出为 **xlf** 或 **xls**
 2. 使用此项目进行翻译并导出为`xls`文件
-3. 在 **Sisulizer** 中导入 **xls** 文件
-4. 编译, 完成
+3. 在 **Sisulizer** 中导入 **xls** 文件, 并生成本地化文件
+4. 完成, 预览
 
 效果可参考: [InstallShield2020-Documents](https://github.com/foyoux/InstallShield2020-Documents)
+
+
+
+## 环境准备
+
+1. 安装Sisulizer4
+
+   > 此项目测试环境为 Sisulizer4 374 版
+
+   大家可自行搜索, 推荐: [软件本地化工具 Sisulizer Enterprise Edition 4.0 Build 374 中文免费版](http://www.dayanzai.me/sisulizer.html)
+
+2. 安装HTML Help Workshop
+
+   可自行搜索下载, 项目 **files** 目录下也有提供 **htmlhelp.exe**
+
+3. 配置Sisulizer
+
+   在菜单: 工具->平台->HTML, [如图设置](images/image-20210626144042156.png)
+
+
+
+## 快速入门
+
+以 **Sisulizer** 帮助文档为例
+
+1. 利用Sisulizer解析字符串并导出
+
+   ![利用Sisulizer解析字符串并导出](images/利用Sisulizer解析字符串并导出.gif)
+   
+2. 利用 **docts** 进行翻译
+
+   安装: `pip install docts`
+
+   ![利用docts进行翻译](images/利用docts进行翻译.gif)
+
+3. 在 **Sisulizer** 中导入翻译好的 **xls** 文件, 并生成本地化文件
+
+   ![生成本地化文件](images/生成本地化文件.gif)
+
+
+
+## 详细教程
+
+暂时只有参考源码, 详细内容TODO
+
+
 
 
 
@@ -68,27 +114,3 @@ document translate, read &amp; translate &amp; write
      [(2021版)支持的所有文件类型](images/image-20210626141828377.png)
 
 > 2021年07月08日22时14分53秒
-
-
-
-## 环境准备
-
-1. 安装Sisulizer4
-
-   > 此项目测试环境为 Sisulizer4 374 版
-
-   大家可自行搜索, 推荐: [软件本地化工具 Sisulizer Enterprise Edition 4.0 Build 374 中文免费版](http://www.dayanzai.me/sisulizer.html)
-
-2. 安装HTML Help Workshop
-
-   可自行搜索下载, 项目 **files** 目录下也有提供 **htmlhelp.exe**
-
-3. 配置Sisulizer
-
-   在菜单: 工具->平台->HTML, [如图设置](images/image-20210626144042156.png)
-
-
-
-## 快速入门
-
-todo
