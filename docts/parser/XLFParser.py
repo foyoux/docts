@@ -15,7 +15,7 @@ def parse_xlf(xlf_path: str) -> List[str]:
 
     with open(xlf_path, encoding='utf-8') as f:
         txt = f.read()
-        origen_words = re.findall(r'<source>(.*?)</source>', txt, re.DOTALL)
+        origen_words = re.findall(r'<source[^>]*>(.*?)</source>', txt, re.DOTALL)
         del txt
 
     i: str

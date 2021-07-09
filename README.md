@@ -9,7 +9,7 @@ document translate, read &amp; translate &amp; write
 
 ## 概述
 
-此项暂时只用来结合**Sisulizer**翻译**CHM帮助文档**
+此项目我暂时只用来结合 **Sisulizer** 翻译 **CHM帮助文档** , 但实际不仅于此, 支持配合 **Sisulizer** 翻译它所支持的所有格式, 理论上也是支持与其他本地化程序配合使用的.
 
 实际案例: [InstallShield2020-Documents](https://github.com/foyoux/InstallShield2020-Documents)
 
@@ -17,10 +17,61 @@ document translate, read &amp; translate &amp; write
 
 1. 使用 **Sisulizer** 提取 **字符串** 并导出为 **xlf** 或 **xls**
 2. 使用此项目进行翻译并导出为`xls`文件
-3. 在 **Sisulizer** 中导入 **xls** 文件
-4. 编译, 完成
+3. 在 **Sisulizer** 中导入 **xls** 文件, 并生成本地化文件
+4. 完成, 预览
 
 效果可参考: [InstallShield2020-Documents](https://github.com/foyoux/InstallShield2020-Documents)
+
+
+
+## 环境准备
+
+1. 安装Sisulizer4
+
+   > 此项目测试环境为 Sisulizer4 374 版
+
+   大家可自行搜索, 推荐: [软件本地化工具 Sisulizer Enterprise Edition 4.0 Build 374 中文免费版](http://www.dayanzai.me/sisulizer.html)
+
+2. 安装HTML Help Workshop
+
+   可自行搜索下载, 项目 **files** 目录下也有提供 **htmlhelp.exe**
+
+3. 配置Sisulizer
+
+   在菜单: 工具->平台->HTML, [如图设置](images/image-20210626144042156.png)
+
+
+
+*注意*
+
+- 你当然只能在 **Windows** 系统里操作
+- 由于依赖 **xlwings**, 而它是依赖 **Excel** 的, 所以你必须安装 **Excel**, 后期会考虑移除此依赖
+
+
+
+## 快速入门
+
+以 **Sisulizer** 帮助文档为例
+
+1. 利用Sisulizer解析字符串并导出
+
+   ![利用Sisulizer解析字符串并导出](images/利用Sisulizer解析字符串并导出.gif)
+   
+2. 利用 **docts** 进行翻译
+
+   安装: `pip install docts`
+
+   ![利用docts进行翻译](images/利用docts进行翻译.gif)
+
+3. 在 **Sisulizer** 中导入翻译好的 **xls** 文件, 并生成本地化文件
+
+   ![生成本地化文件](images/生成本地化文件.gif)
+
+
+
+## 详细教程
+
+暂时只有参考源码, 详细内容TODO
 
 
 
@@ -49,6 +100,8 @@ document translate, read &amp; translate &amp; write
 
 - **Sisulizer** 本身是支持 **机器翻译** 的, 可能由于盗版问题严重, 已全面停用了这一功能.
 
+- **Sisulizer** 只支持旧版 **Excel** 格式的 **xls** 文件, 而 **xls** 工作表最多只支持 **65536条数据**, 当导出句子大于这一数量时, 会丢失数据, 所以建议导出统一使用 **XLIFF** 选项导出为 **xlf** 文件, **dcots** 导出时会自动分量 **xls** 文件导出.
+
 - 软件本地化工具:  都好久没更新了, 三年吧
 
   1. [Sisulizer](https://www.sisulizer.com/): 使用简单, 功能强大, 我比较喜欢, 最新版是2018发布的 **374** 版
@@ -68,27 +121,3 @@ document translate, read &amp; translate &amp; write
      [(2021版)支持的所有文件类型](images/image-20210626141828377.png)
 
 > 2021年07月08日22时14分53秒
-
-
-
-## 环境准备
-
-1. 安装Sisulizer4
-
-   > 此项目测试环境为 Sisulizer4 374 版
-
-   大家可自行搜索, 推荐: [软件本地化工具 Sisulizer Enterprise Edition 4.0 Build 374 中文免费版](http://www.dayanzai.me/sisulizer.html)
-
-2. 安装HTML Help Workshop
-
-   可自行搜索下载, 项目 **files** 目录下也有提供 **htmlhelp.exe**
-
-3. 配置Sisulizer
-
-   在菜单: 工具->平台->HTML, [如图设置](images/image-20210626144042156.png)
-
-
-
-## 快速入门
-
-todo
