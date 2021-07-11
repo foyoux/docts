@@ -43,4 +43,3 @@ def write_xls(xls_path: str, origins: List[str], trans: List[str] = None, step=6
         print(f'保存文件: {new_wb}')
 
     app.quit()
-    return xls_path
