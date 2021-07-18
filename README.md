@@ -122,25 +122,24 @@ document translate, read &amp; translate &amp; write
 
 ### 翻译部分
 
-```python
-# 导包
-from docts import *
-# 定义文件路径
-xlf=r'demo.xlf'
-```
-
 我们不可能一股脑的, 把所有的字符串拿去翻译, 最起码你得稍微过滤一下需要翻译的句子吧:
 
 - 空字符串
+
 - 重复字符串
 
-```python
-# 使用 parse_xlf 方法提取全部字符串
-# 这个过程会自动去重, 删除 '' 字符串
-words=parse_xlf(xlf)
-# 将提取到字符串列表 words 作为参数, 创建一个 WordsFilter 过滤器对象
-wf=WordsFilter(words)
-```
+  ```python
+  # 导包
+  from docts import *
+  # 定义文件路径
+  xlf=r'demo.xlf'
+  
+  # 使用 parse_xlf 方法提取全部字符串
+  # 这个过程会自动去重, 删除 '' 字符串
+  words=parse_xlf(xlf)
+  # 将提取到字符串列表 words 作为参数, 创建一个 WordsFilter 过滤器对象
+  wf=WordsFilter(words)
+  ```
 
 - 你可能还需要把不含字母的字符串去掉, 比如: '•', 你可以这样做
 
@@ -156,7 +155,7 @@ wf=WordsFilter(words)
   # 它会被自动应用到每一个字符串句子上
   wf.add_filter(filter_point)
   ```
-
+  
 - 你可能想把所有的 '•' 变成 '●', 因为前者是 **UTF-8** 的编码, 在翻译后的文件中的 **GB2312** 无法正常显示, 而翻译或过滤并不能解决这个问题, 这是你希望将 '•' 变成 '●'
 
   ```python
