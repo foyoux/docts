@@ -1,6 +1,6 @@
+from .Doc import Doc
 from .filter import *
 from .map import *
-from .Doc import Doc
 
 __title__ = 'docts'
 
@@ -15,12 +15,11 @@ __ide__ = 'PyCharm - https://www.jetbrains.com/pycharm/'
 
 
 def todo(path: str):
-    """
-    快速尝试
-    :param path:
-    :return:
-    """
+
     doc = Doc(path)
+
     doc.add_filter(filter_eq_symbol)
+
     doc.add_filter(filter_not_str)
-    doc.save_words()
+
+    return doc.save_words()
