@@ -1,9 +1,6 @@
-from .filter import WordsFilter
-from .filter.F1 import *
-from .map.M1 import *
-from .parser.XLFParser import parse_xlf
-from .parser.XLSParser import parse_xls
-from .writer.XLSWriter import write_xls
+from .filter import *
+from .map import *
+from .Doc import Doc
 
 __title__ = 'docts'
 
@@ -23,11 +20,7 @@ def todo(path: str):
     :param path:
     :return:
     """
-    if path.endswith('.xls'):
-        words = parse_xls(path)
-    else:
-        words = parse_xlf(path)
-    wf = WordsFilter(words)
-    wf.add_filter(filter_not_str)
-    wf.add_filter(filter_eq_symbol)
-    write_xls(path, wf.words)
+    doc = Doc(path)
+    doc.add_filter(filter_eq_symbol)
+    doc.add_filter(filter_not_str)
+    doc.save_words()

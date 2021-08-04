@@ -1,21 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<desktop scan="1" scanned="20210709114110" built="20210709115627" lang="zh" pane="TLogPane" row="AboutDialog.htm.head.title.text">
+<desktop scan="1" scanned="20210709114110" built="20210804125043" lang="zh" pane="TLogPane" col="4" row="head.title.text">
   <language id="zh" autoime="0" autokeyboard="0"/>
   <triggers>
-    <item class="TValidateTrigger" position="1"/>
+    <item class="TValidateTrigger" position="2"/>
   </triggers>
   <sheet>
     <columns>
       <item class="TFlagsColumn" width="38"/>
-      <item class="TPathColumn" width="127"/>
+      <item class="TPathColumn" width="281"/>
       <item class="TTranslationStatusColumn" width="66"/>
-      <item class="TOriginalColumn" width="254"/>
-      <item class="TTranslationColumn" lang="zh" width="253"/>
+      <item class="TOriginalColumn" width="562"/>
+      <item class="TTranslationColumn" lang="zh" width="559"/>
     </columns>
   </sheet>
+  <view node="TChmNode" view="THtmlPreview"/>
   <path>
     <item>All</item>
     <item>Sisulizer.chm</item>
+    <item>AndroidSettingsDialog.htm</item>
   </path>
   <export format="efXliff">
     <xliff escape="seNone" items="[]" translation="teWriteEmpty" usefullids="0"/>
