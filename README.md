@@ -7,6 +7,43 @@ document translate, read &amp; translate &amp; write
 
 
 
+------
+
+- 从 **v0.0.7** 开始, 无需 **xlwings** 和 **Excel**, 废弃 **xls** 文件, 改用无限制的 **xlf**
+
+- 代码结构也调整了, 从 **WordFilters** 转移到 **Doc**
+
+  ```python
+  from docts import *
+  
+  xlf_path='xlf_path.xlf'
+  
+  # 使用示例方法
+  todo(xlf_path)
+  
+  # 运行完毕后, 会在xlf_path同目录下生成一个翻译好的文件, 则直接导入 Sisulizer
+  
+  # 自定义, 无需再使用 parse_xl* 方法解析字符串, Doc中自动处理
+  doc = Doc(xlf_path)
+  # WordFilters对象的add_filter等方法直接转移到, Doc对象中
+  doc.add_filter(xxx_filter)
+  
+  # 保存文件也无需使用 write_xl* 
+  doc.save_words()
+  
+  # 需要导出忽略文件时
+  doc.save_ignores()
+  
+  ```
+
+  
+
+看着迷迷糊糊, 不妨动手试一试
+
+--------
+
+
+
 ## 概述
 
 此项目我暂时只用来结合 **Sisulizer** 翻译 **CHM帮助文档** , 但实际不仅于此, 支持配合 **Sisulizer** 翻译它所支持的所有格式, 理论上也是支持与其他本地化程序配合使用的.

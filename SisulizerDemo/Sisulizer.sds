@@ -17,6 +17,7 @@
   <path>
     <item>All</item>
     <item>Sisulizer.chm</item>
+    <item>AndroidSettingsDialog.htm</item>
   </path>
   <export format="efXliff">
     <xliff escape="seNone" items="[]" translation="teWriteEmpty" usefullids="0"/>
