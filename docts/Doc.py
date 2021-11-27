@@ -30,10 +30,9 @@ def parse_xlf(xlf_path: str) -> List[str]:
     return words
 
 
-def write_xlf(xlf_path: str, origins: List[str], trans: List[str] = None, step=60000):
+def write_xlf(xlf_path: str, origins: List[str], client: Translate, trans: List[str] = None):
     # 翻译
     if trans is None:
-        client = Translate()
         trans = client.translate(origins)
         if isinstance(trans, Null):
             print(trans.msg)
@@ -65,11 +64,12 @@ def write_xlf(xlf_path: str, origins: List[str], trans: List[str] = None, step=6
 class Doc:
     """..."""
 
-    def __init__(self, xlf_path: str):
+    def __init__(self, xlf_path: str, client: Translate):
         """..."""
         self.xlf_path = xlf_path
         self.words = parse_xlf(xlf_path)
         self.ignores = []
+        self.client = client
 
     def add_filter(self, _filter: Callable[[str], bool]):
         """
@@ -158,11 +158,11 @@ class Doc:
     def save_words(self):
         """..."""
         xlf_path = self.xlf_path[:-4] + '_words.xlf'
-        write_xlf(xlf_path, self.words)
+        write_xlf(xlf_path, self.words, self.client)
         return xlf_path
 
     def save_ignores(self):
         """..."""
         xlf_path = self.xlf_path[:-4] + '_ignores.xlf'
-        write_xlf(xlf_path, self.ignores, self.ignores)
+        write_xlf(xlf_path, self.ignores, self.client, self.ignores)
         return xlf_path
