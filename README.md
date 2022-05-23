@@ -90,7 +90,7 @@ doc.save_ignores()
 
    > 此项目测试环境为 Sisulizer4 374 版
 
-   大家可自行搜索, 推荐: [软件本地化工具 Sisulizer Enterprise Edition 4.0 Build 374 中文免费版](http://www.dayanzai.me/sisulizer.html)
+   大家可自行搜索, 这里也有提供: [软件本地化工具 Sisulizer Enterprise Edition 4.0 Build 374 中文免费版](https://github.com/foyoux/docts/releases/tag/v0.1.0)
 
 2. 安装HTML Help Workshop
 
