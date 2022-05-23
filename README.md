@@ -18,12 +18,12 @@ from docts import *
 xlf_path = 'xlf_path.xlf'
 
 # 使用示例方法
-todo(xlf_path)
+# todo(xlf_path)
 
 # 运行完毕后, 会在xlf_path同目录下生成一个翻译好的文件, 则直接导入 Sisulizer
 
 # 现在需要手动构造 client 参数，具体参考：https://github.com/foyoux/pygtrans
-client = Translate(proxies={"socks5": "http://localhost:10808"})
+client = Translate(proxies={"https": "socks5://localhost:10808"})
 doc = Doc(xlf_path, client)
 # WordFilters对象的add_filter等方法直接转移到, Doc对象中
 doc.add_filter(xxx_filter)
