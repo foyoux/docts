@@ -11,6 +11,7 @@ __ide__ = 'PyCharm - https://www.jetbrains.com/pycharm/'
 import argparse
 import html
 import re
+from itertools import islice
 from typing import Callable, Pattern, AnyStr, List
 
 from pygtrans import Translate, Null
@@ -87,13 +88,16 @@ def parse_xlf(xlf_path: str) -> List[str]:
     return words
 
 
-def write_xlf(xlf_path: str, origins: List[str], client: Translate, trans: List[str] = None):
+def write_xlf(xlf_path: str, origins: List[str], client: Translate, trans: List[str] = None, limit=5000):
     # 翻译
     if trans is None:
-        trans = client.translate(origins)
-        if isinstance(trans, Null):
-            print(trans.msg)
-            raise
+        trans = []
+        for lst in [list(islice(origins, i, i + limit)) for i in range(0, len(origins), limit)]:
+            tl = client.translate(lst)
+            if isinstance(tl, Null):
+                print(tl.msg)
+                raise trans
+            trans.extend(tl)
         trans = [i.translatedText for i in trans]
 
     # 写入文件
@@ -126,11 +130,12 @@ def write_xlf(xlf_path: str, origins: List[str], client: Translate, trans: List[
 
 class Docts:
 
-    def __init__(self, xlf_path: str, client: Translate):
+    def __init__(self, xlf_path: str, client: Translate, limit: int = 5000):
         self.xlf_path = xlf_path
         self.words = parse_xlf(xlf_path)
         self.ignores = []
         self.client = client
+        self.limit = limit
 
     def add_filter(self, _filter: Callable[[str], bool]):
         """
@@ -219,13 +224,13 @@ class Docts:
     def save_words(self):
         """..."""
         xlf_path = self.xlf_path[:-4] + '_words.xlf'
-        write_xlf(xlf_path, self.words, self.client)
+        write_xlf(xlf_path, self.words, self.client, limit=self.limit)
         return xlf_path
 
     def save_ignores(self):
         """..."""
         xlf_path = self.xlf_path[:-4] + '_ignores.xlf'
-        write_xlf(xlf_path, self.ignores, self.client, self.ignores)
+        write_xlf(xlf_path, self.ignores, self.client, self.ignores, limit=self.limit)
         return xlf_path
 
 
