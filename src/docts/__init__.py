@@ -10,11 +10,23 @@ __ide__ = 'PyCharm - https://www.jetbrains.com/pycharm/'
 
 import argparse
 import html
+import logging
 import re
 from itertools import islice
 from typing import Callable, Pattern, AnyStr, List
 
 from pygtrans import Translate, Null
+
+log = logging.getLogger('docts')
+_handler = logging.StreamHandler()
+_handler.setFormatter(
+    logging.Formatter(
+        fmt=f'%(asctime)s datclass.%(levelname)s %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
+)
+log.addHandler(_handler)
+log.setLevel(logging.INFO)
 
 # filter start
 
@@ -70,21 +82,15 @@ def parse_xlf(xlf_path: str) -> List[str]:
     :return:
     """
     if not xlf_path.endswith('.xlf'):
-        print(f'不是xlf文件: {xlf_path}')
-        raise
+        raise ValueError(f'所给文件 {xlf_path} 不是 xlf 文件')
 
     # newline='', 换行符原样读入
     with open(xlf_path, encoding='utf-8', newline='') as f:
-        txt = f.read()
-        origen_words = re.findall(r'<source[^>]*>(.*?)</source>', txt, re.DOTALL)
-        del txt
+        origen_words = re.findall(r'<source[^>]*>(.*?)</source>', f.read(), re.DOTALL)
 
     i: str
-    # words = [html.unescape(i.replace('[]\n', '\r\n')) for i in set(origen_words) if i != '']
     words = [html.unescape(i) for i in set(origen_words) if i != '']
-
-    print(f'过滤重复或空文本 parse_xlf: {len(origen_words) - len(words)}')
-
+    log.info('过滤重复或空文本 %d 条', len(origen_words) - len(words))
     return words
 
 
@@ -95,9 +101,9 @@ def write_xlf(xlf_path: str, origins: List[str], client: Translate, trans: List[
         for lst in [list(islice(origins, i, i + limit)) for i in range(0, len(origins), limit)]:
             tl = client.translate(lst)
             if isinstance(tl, Null):
-                print(tl.msg)
-                raise trans
+                raise Exception(tl.msg)
             trans.extend(tl)
+            log.info(f'翻译完成: %d/%d', len(trans), len(origins))
         trans = [i.translatedText for i in trans]
 
     # 写入文件
@@ -149,7 +155,7 @@ class Docts:
                 self.ignores.append(word)
                 continue
             words.append(word)
-        print(f'过滤文本 {_filter.__name__}: {len(self.words) - len(words)}')
+        log.info('过滤器 %s 过滤文本 %d 条', _filter.__name__, len(self.words) - len(words))
         self.words = words
         return self
 
@@ -165,7 +171,7 @@ class Docts:
                 self.ignores.append(word)
                 continue
             words.append(word)
-        print(f'过滤文本 add_contain_filter({contain}): {len(self.words) - len(words)}')
+        log.info('过滤器 add_contain_filter(%s) 过滤文本 %d 条', contain, len(self.words) - len(words))
         self.words = words
         return self
 
@@ -179,7 +185,7 @@ class Docts:
                 self.ignores.append(word)
                 continue
             words.append(word)
-        print(f'过滤文本 add_start_filter({start}): {len(self.words) - len(words)}')
+        log.info(f'过滤器 add_start_filter(%s) 过滤文本 %d 条', start, len(self.words) - len(words))
         self.words = words
         return self
 
@@ -193,7 +199,7 @@ class Docts:
                 self.ignores.append(word)
                 continue
             words.append(word)
-        print(f'过滤文本 add_end_filter({end}): {len(self.words) - len(words)}')
+        log.info(f'过滤器 add_end_filter(%s) 过滤文本 %d 条', end, len(self.words) - len(words))
         self.words = words
         return self
 
